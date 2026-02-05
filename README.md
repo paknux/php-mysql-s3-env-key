@@ -81,7 +81,7 @@ sudo mv composer.phar /usr/local/bin/composer
 
 # Install AWS SDK for PHP di direktori project
 cd /var/www/html
-sudo composer require aws/aws-sdk-php
+## sudo composer require aws/aws-sdk-php vlucas/phpdotenv
 
 # Atur izin folder agar web server bisa menulis file
 sudo chown -R www-data:www-data /var/www/html
