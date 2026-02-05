@@ -45,14 +45,16 @@ Confirm master password : (P4ssw0rd) boleh diganti
 3. Hubungkan ke instance via SSH.
 
 ### C. Membuat dan Konfigurasi S3 Bucket
-S3 Bucket dapat dibuat dengan Web GUO Management Console seperti biasa, atau jalankan perintah ini melalui terminal (setelah konfigurasi AWS CLI), atau AWS Clodshell untuk membuat bucket bernama `nugwebphps3`:
+S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa, 
 
 
+Jika belum dibuka, maka dapat public access dengan Clodshell seperti berikut ini :
 #### Membuka Public Access Block
 ```bash
 aws s3api put-public-access-block --bucket nugwebphps3 --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
 ```
 
+Jika menghendadi file dapat diakse public tanpa ACL, namun dengan bucket policy, maka dapat public access dengan Clodshell seperti berikut ini :
 #### Mengatur Policy agar file bisa diakses publik (Read Only)
 ```bash
 aws s3api put-bucket-policy --bucket nugwebphps3 --policy '{
