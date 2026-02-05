@@ -9,7 +9,7 @@
 
 ## I. Persiapan Infrastruktur AWS
 
-Buat dulu SG yang sesuai, ijinkan inbound rule port 22, 80 (untuk web server), dan 3306 (MySQL/Aurora) dari anywhere-IPv4 (0.0.0.0/0).
+Buat dulu SG yang sesuai, ijinkan inbound rule port 22, 80 (web server), dan 3306 (MySQL/Aurora) dari anywhere-IPv4 (0.0.0.0/0).
 
 ### A. Buat RDS
 
