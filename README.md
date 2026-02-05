@@ -48,11 +48,13 @@ Confirm master password : (P4ssw0rd) boleh diganti
 S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa, 
 
 
+
 #### Membuka Public Access Block
 Jika belum dibuka, maka dapat public access dengan Clodshell seperti berikut ini :
 ```bash
 aws s3api put-public-access-block --bucket nugwebphps3 --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
 ```
+
 
 
 #### Mengatur Policy agar file bisa diakses publik (Read Only)
