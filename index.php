@@ -21,7 +21,7 @@ try {
 
     // Buat Database jika belum ada
     $pdo->exec("CREATE DATABASE IF NOT EXISTS `$dbName` CHARACTER SET utf8mb4");
-    $pdo->exec("USE `$dbName` text");
+    $pdo->exec("USE `$dbName`");
 
     // Buat Tabel jika belum ada
     $tableSql = "CREATE TABLE IF NOT EXISTS karyawan (
