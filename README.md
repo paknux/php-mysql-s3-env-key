@@ -54,7 +54,7 @@ S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa,
    - Bucket Type : General purpose
    - Bucket Name : nug-php-mysql-s3-env-key
    - Object Ownership
-        - pilih : ACLs enabled
+        - pilih : <h4> ACLs enabled </h4>
    - Block Public Access settings for this bucket
    - pastikan Block all public access TIDAK DICENTANG
    - jangan lupa CENTANG acknowledge that the current settings
