@@ -123,9 +123,9 @@ cp * /var/www/html
 
 
 ## Envirom,emt Variable .env
-Environment variable dapat berupa file .env atau dapat berupa Environment dari OS Linuxnya
+Environment variable dapat berupa file .env
 
-Isi dari Environment memuat jal berikut ini:
+Isi dari Environment memuat hal berikut ini:
 
 ````
 DB_HOST=database-1.ccqnofwkwmzs.us-east-1.rds.amazonaws.com
