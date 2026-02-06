@@ -48,6 +48,19 @@ Confirm master password : (P4ssw0rd) boleh diganti
 S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa, 
 
 
+## Buat S3
+1. Buka Amazon S3 (cari S3)
+2. Klik Create bucket
+   Bucket Type : General purpose
+   Bucket Name : nug-lat-web-static-acl
+   Object Ownership
+   pilih : ACLs enabled
+   Block Public Access settings for this bucket
+   pastikan Block all public access TIDAK DICENTANG
+   jangan lupa CENTANG acknowledge that the current settings
+3. klik Create bucket
+
+
 
 #### Membuka Public Access Block
 Jika belum dibuka public access, dapat dilakukan dengan Clodshell seperti berikut ini :
