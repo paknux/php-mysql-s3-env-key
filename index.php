@@ -44,6 +44,7 @@ $s3Client = new S3Client([
     'credentials' => [
         'key'    => $_ENV['AWS_ACCESS_KEY_ID'],
         'secret' => $_ENV['AWS_SECRET_ACCESS_KEY'],
+        'token'  => $_ENV['AWS_SESSION_TOKEN'], // BARIS INI WAJIB UNTUK AWS ACADEMY
     ],
 ]);
 $bucketName = $_ENV['AWS_BUCKET'];

@@ -52,7 +52,7 @@ S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa,
 1. Buka Amazon S3 (cari S3)
 2. Klik Create bucket 
    - Bucket Type : General purpose
-   - Bucket Name : nug-lat-web-static-acl
+   - Bucket Name : nug-php-mysql-s3-env-key
    - Object Ownership
         - pilih : ACLs enabled
    - Block Public Access settings for this bucket
@@ -115,9 +115,9 @@ sudo rm /var/www/html/index.html
 
 cd ~
 
-git clone https://github.com/paknux/php-mysql-s3.git
+git clone https://github.com/paknux/php-mysql-s3-env-key.git
 
-cd php-mysql-s3
+cd php-mysql-s3-env-key
 cp * /var/www/html
 ```
 
