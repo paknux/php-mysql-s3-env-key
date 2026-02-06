@@ -122,28 +122,28 @@ cp * /var/www/html
 ```
 
 
-## Sesuikan config.php
+## Envirom,emt Variable .env
+Environment variable dapat berupa file .env atau dapat berupa Environment dari OS Linuxnya
 
-edit file config.php di /var/www/html
+Isi dari Environment memuat jal berikut ini:
 
-```
-cd /var/www/html
-nano config.php
-```
-
-sesuaikan 
-
-```
-
-$bucket = 'nugwebphps3'; // GANTI DENGAN NAMA BUCKET ANDA
+````
+DB_HOST=database-1.ccqnofwkwmzs.us-east-1.rds.amazonaws.com
+DB_PORT=3306
+DB_NAME=db_karyawan_pkl
+DB_USER=admin
+DB_PASS=P4ssw0rd
 
 
-$db_host = '';           // ISI DENGAN ENDPOINT RDS ANDA
-$db_user = 'admin';      // GANTI DENGAN USER RDS ANDA
-$db_pass = 'P4ssw0rd';   // GANTI DENGAN PASSWORD RDS ANDA
-```
+AWS_REGION=us-east-1
+AWS_BUCKET=nug-php-mysql-s3-env-key
+
+AWS_ACCESS_KEY_ID=ASIAV2E5ZUF7E5FRQDHV
+AWS_SECRET_ACCESS_KEY=okhA/o8N6d4Ao9p9yUdAMJetytf3GbbBAF4bH5Pb
+AWS_SESSION_TOKEN=IQoJb3JpZ2luX2VjEG8aCXVzLXdlc3QtMiJGMEQCIFCkwfqwaSSxY56qCmoTXHJwsrq33H9hpaj8zFrAUHOIAiBRK22CiZyfXyjQXYsFE+XN6AKMesDaSphQbAV/Vnx3QCqkAgg4EAMaDDM5OTc>
+
+````
 
 
 ## Pengujian
-##### index.php : harus menggunakan bucket policy
-##### index2.php : tanpa bucket policy
+##### Gunakan browser
