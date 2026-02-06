@@ -51,8 +51,8 @@ S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa,
 ## Buat S3
 1. Buka Amazon S3 (cari S3)
 2. Klik Create bucket <br>
-   Bucket Type : General purpose
-   Bucket Name : nug-lat-web-static-acl
+   Bucket Type : General purpose <br>
+   Bucket Name : nug-lat-web-static-acl <br>
    Object Ownership
    pilih : ACLs enabled
    Block Public Access settings for this bucket
