@@ -146,3 +146,9 @@ AWS_SESSION_TOKEN=
 
 ## Pengujian
 ##### Gunakan browser
+http://ip_public
+
+##### Pengetesan Environment Variable
+http://ip_public.testenv.php
+
+
