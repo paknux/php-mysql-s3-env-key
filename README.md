@@ -130,7 +130,7 @@ Isi dari Environment memuat jal berikut ini:
 ````
 DB_HOST=database-1.ccqnofwkwmzs.us-east-1.rds.amazonaws.com
 DB_PORT=3306
-DB_NAME=db_karyawan_pkl
+DB_NAME=db_karyawan
 DB_USER=admin
 DB_PASS=P4ssw0rd
 
