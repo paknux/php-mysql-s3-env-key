@@ -103,7 +103,7 @@ cp * /var/www/html
 ```
 
 
-## Envirom,emt Variable .env
+## Environment Variable .env
 Environment variable dapat berupa file .env
 
 Isi dari Environment memuat hal berikut ini:
@@ -127,9 +127,12 @@ AWS_SESSION_TOKEN=
 
 ## Pengujian
 ##### Gunakan browser
+````
 http://ip_public
+````
 
 ##### Pengetesan Environment Variable
-http://ip_public.testenv.php
-
+````
+http://ip_public/testenv.php
+````
 
