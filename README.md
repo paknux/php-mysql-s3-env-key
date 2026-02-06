@@ -1,6 +1,6 @@
 # Aplikasi Data Karyawan CRUD PHP-MySQL-S3 Dengan Environmet Variable dan S3 Key 
 ---
-## menggunakan **EC2 Ubuntu 24.04** di lingkungan **AWS Academy**.
+## Menggunakan **EC2 Ubuntu 24.04** di lingkungan **AWS Academy**.
 ---
 
 ### Project ini mendokumentasikan langkah-langkah mendeploy aplikasi PHP yang menyimpan file (asset) di **AWS S3** menggunakan **EC2 Ubuntu 24.04** di lingkungan **AWS Academy**.
