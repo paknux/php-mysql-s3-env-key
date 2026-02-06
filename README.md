@@ -61,25 +61,6 @@ S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa,
 3. klik Create bucket
 
 
-
-#### Membuka Public Access Block
-Jika belum dibuka public access, dapat dilakukan dengan Clodshell seperti berikut ini :
-```bash
-aws s3api put-public-access-block --bucket nugwebphps3 --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
-```
-
-
-
-#### Mengatur Policy agar file bisa diakses publik (Read Only)
-Jika menghendaki file dapat diakses public tanpa ACL (ACL disabled) dengan bucket policy, maka dapat public access dengan Clodshell seperti berikut ini :
-```bash
-aws s3api put-bucket-policy --bucket nugwebphps3 --policy '{
-    "Version":"2012-10-17",
-    "Statement":[{"Sid":"PublicReadGetObject","Effect":"Allow","Principal":"*","Action":"s3:GetObject","Resource":"arn:aws:s3:::nugwebphps3/*"}]
-}'
-```
-
-
 ## II. Deploy App ke EC2
 
 ## Langkah 1: Persiapan dan Instalasi Server
