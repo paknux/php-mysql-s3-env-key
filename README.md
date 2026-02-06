@@ -53,8 +53,8 @@ S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa,
 2. Klik Create bucket 
    - Bucket Type : General purpose
    - Bucket Name : nug-lat-web-static-acl
-   - Object Ownership 
-   pilih : ACLs enabled
+   - Object Ownership
+        - pilih : ACLs enabled
    - Block Public Access settings for this bucket
    - pastikan Block all public access TIDAK DICENTANG
    - jangan lupa CENTANG acknowledge that the current settings
