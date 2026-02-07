@@ -104,9 +104,14 @@ cp * /var/www/html
 
 
 ## Environment Variable .env
-Environment variable dapat berupa file .env
+Environment variable dapat berupa file .env atau dapat merupakan environment dari OS. 
+Untuk aplikasi Apache2-PHP karena user yang menjalankan adalah www-data maka lebih mudah digunakan file .htaccess atau .env di dalam direktori kerja /var/www/html
 
-Isi dari Environment memuat hal berikut ini:
+`````
+nano /var/www/html/.env
+`````
+
+Isi dari file .env memuat hal berikut ini:
 
 ````
 DB_HOST=database-1.ccqnofwkwmzs.us-east-1.rds.amazonaws.com
