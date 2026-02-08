@@ -110,7 +110,7 @@ Resources:
       - MyDatabase
       - MyS3Bucket
     Properties:
-      InstanceType: t2.micro
+      InstanceType: t2.nano
       KeyName: vockey 
       ImageId: ami-0e2c8caa4b6378d8c 
       SecurityGroupIds:
@@ -123,23 +123,20 @@ Resources:
           #!/bin/bash
           # 1. Install Dependencies
           apt-get update -y
-          apt-get install -y apache2 php libapache2-mod-php php-mysql php-curl php-xml php-mbstring php-zip unzip git
+          apt-get install -y apache2 php libapache2-mod-php php-mysql php-curl php-xml php-mbstring php-zip unzip git composer
 
-          # 2. Install Composer Global
-          curl -sS https://getcomposer.org/installer | php
-          sudo mv composer.phar /usr/local/bin/composer
-
-          # 3. Bersihkan direktori web dan Clone Repo
+         
+          # 2. Bersihkan direktori web dan Clone Repo
           rm -rf /var/www/html/*
           git clone ${GitHubRepoURL} ${TempRepoPath}
           cp -r ${TempRepoPath}/* /var/www/html/
           rm -rf ${TempRepoPath}
 
-          # 4. Jalankan Composer Install
+          # 3. Jalankan Composer Install
           cd /var/www/html
-          composer require aws/aws-sdk-php vlucas/phpdotenv
+          sudo composer require aws/aws-sdk-php vlucas/phpdotenv
 
-          # 5. Buat file .env otomatis (Tanpa spasi setelah =)
+          # 4. Buat file .env otomatis (Tanpa spasi setelah =)
           cat <<EOF > /var/www/html/.env
           DB_HOST=${MyDatabase.Endpoint.Address}
           DB_NAME=${envDBNAME}
@@ -152,11 +149,11 @@ Resources:
           AWS_SESSION_TOKEN=${envAWSSESSIONTOKEN}
           EOF
 
-          # 6. Atur Permissions
+          # 5. Atur Permissions
           chown -R ubuntu:www-data /var/www/html
           chmod -R 775 /var/www/html
           
-          # 7. Restart Apache
+          # 6. Restart Apache
           systemctl restart apache2
 
 Outputs:

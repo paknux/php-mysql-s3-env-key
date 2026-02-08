@@ -71,12 +71,7 @@ Jalankan perintah berikut pada terminal EC2 Ubuntu 24.04 untuk menginstal Apache
 sudo apt update
 
 # Install Apache, PHP, dan ekstensi yang diperlukan
-sudo apt install -y apache2 php-mysql php php-cli php-curl php-xml php-mbstring libapache2-mod-php unzip
-
-
-# Install Composer secara global
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
+sudo apt install -y apache2 php-mysql php php-cli php-curl php-xml php-mbstring libapache2-mod-php unzip composer
 
 # Install AWS SDK for PHP di direktori project
 cd /var/www/html
