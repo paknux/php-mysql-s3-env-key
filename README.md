@@ -126,8 +126,9 @@ AWS_SESSION_TOKEN=
 AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN dapat dilihat dari AWS Details di akun AWS Academy anda, di halaman untuk Start/Stop Lab.
 
 
+---
 
-## Pengujian
+## III. Pengujian
 ##### Gunakan browser
 ````
 http://ip_public
@@ -137,4 +138,3 @@ http://ip_public
 ````
 http://ip_public/testenv.php
 ````
-
