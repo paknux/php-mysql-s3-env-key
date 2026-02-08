@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Full Infrastructure dengan Otomatisasi Git Clone untuk Project Karyawan.
+Description: Full Infrastructure dengan Otomatisasi Git Clone untuk Aplikasi Data Karyawan.
 
 Parameters:
   GitHubRepoURL:

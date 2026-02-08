@@ -85,7 +85,6 @@ sudo chmod -R 777 /var/www/html
 sudo rm /var/www/html/index.html
 ```
 
-
 ## Langkah 2: Deploy Aplikasi
 ```
 

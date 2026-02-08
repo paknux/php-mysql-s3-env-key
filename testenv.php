@@ -21,7 +21,6 @@ function get_config($key, $default = null) {
     return $_ENV[$key] ?? $default;
 }
 
-
 // Mengambil variabel spesifik
 $token = get_config('AWS_SESSION_TOKEN');
 $accessKey = get_config('AWS_ACCESS_KEY_ID');
