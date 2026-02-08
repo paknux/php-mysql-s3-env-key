@@ -62,6 +62,7 @@ S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa,
 3. klik Create bucket
 
 ---
+---
 
 ## II. Deploy App ke EC2
 
