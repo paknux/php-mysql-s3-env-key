@@ -73,6 +73,12 @@ sudo apt update
 # Install Apache, PHP, dan ekstensi yang diperlukan
 sudo apt install -y apache2 php-mysql php php-cli php-curl php-xml php-mbstring libapache2-mod-php unzip composer
 
+# Bersihkan direktori web dan Clone Repo
+rm -rf /var/www/html/*
+git clone https://github.com/paknux/php-mysql-s3-env-key.git /tmp/repo
+cp -r /tmp/repo/* /var/www/html/
+rm -rf /tmp/repo
+
 # Install AWS SDK for PHP di direktori project
 cd /var/www/html
 composer require aws/aws-sdk-php vlucas/phpdotenv
@@ -85,17 +91,7 @@ sudo chmod -R 777 /var/www/html
 sudo rm /var/www/html/index.html
 ```
 
-## Langkah 2: Deploy Aplikasi
-```
-
-cd ~
-
-git clone https://github.com/paknux/php-mysql-s3-env-key.git
-
-cd php-mysql-s3-env-key
-cp * /var/www/html
-```
-
+## Langkah 2: Setting Environment Aplikasi
 
 ## Environment Variable .env
 Environment variable dapat berupa file .env atau dapat merupakan environment dari OS. 
