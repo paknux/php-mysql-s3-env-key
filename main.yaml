@@ -1,0 +1,129 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Full Infrastructure dengan Otomatisasi Git Clone untuk Project Karyawan.
+
+Resources:
+  # 1. SECURITY GROUP
+  MyAppSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupName: "SG-AllWeb-Automated"
+      GroupDescription: "Allow 22, 80, 3306, and ICMP"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 3306
+          ToPort: 3306
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: icmp
+          FromPort: -1
+          ToPort: -1
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: "SG-AllWeb"
+
+  # 2. S3 BUCKET
+  MyS3Bucket:
+      Type: 'AWS::S3::Bucket'
+      Properties:
+        BucketName: "nug-php-mysql-s3-env-key" 
+        # Hapus baris AccessControl: PublicReadWrite jika masih gagal
+        OwnershipControls:
+          Rules:
+            - ObjectOwnership: BucketOwnerPreferred
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
+
+
+
+  # 3. RDS MYSQL INSTANCE
+  MyDatabase:
+    Type: 'AWS::RDS::DBInstance'
+    Properties:
+      DBInstanceIdentifier: "database-1"
+      Engine: mysql
+      EngineVersion: "8.0"
+      DBInstanceClass: db.t3.micro
+      AllocatedStorage: "20"
+      DBName: "db_karyawan"
+      MasterUsername: "admin"
+      MasterUserPassword: "P4ssw0rd"
+      PubliclyAccessible: true
+      VPCSecurityGroups:
+        - !GetAtt MyAppSecurityGroup.GroupId
+
+  # 4. INSTANCE EC2 DENGAN GIT CLONE
+  MyEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    DependsOn: 
+      - MyDatabase
+      - MyS3Bucket
+    Properties:
+      InstanceType: t2.micro
+      KeyName: vockey 
+      ImageId: ami-0e2c8caa4b6378d8c 
+      SecurityGroupIds:
+        - !Ref MyAppSecurityGroup
+      Tags:
+        - Key: Name
+          Value: php-mysql-s3
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          # 1. Install Dependencies
+          apt-get update -y
+          apt-get install -y apache2 php libapache2-mod-php php-mysql php-curl php-xml php-mbstring php-zip unzip git
+
+          # 2. Install Composer Global
+          curl -sS https://getcomposer.org/installer | php
+          sudo mv composer.phar /usr/local/bin/composer
+
+          # 3. Bersihkan direktori web dan Clone Repo
+          rm -rf /var/www/html/*
+          git clone https://github.com/paknux/php-mysql-s3-env-key /tmp/repo
+          cp -r /tmp/repo/* /var/www/html/
+          rm -rf /tmp/repo
+
+          # 4. Jalankan Composer Install di dalam /var/www/html
+          cd /var/www/html
+          # sudo -u ubuntu composer install
+          composer require aws/aws-sdk-php vlucas/phpdotenv
+
+          # 5. Buat file .env otomatis dengan endpoint RDS & S3 terbaru
+          cat <<EOF > /var/www/html/.env
+          DB_HOST=${MyDatabase.Endpoint.Address}
+          DB_NAME=db_karyawan
+          DB_USER=admin
+          DB_PASS=P4ssw0rd
+          AWS_BUCKET=${MyS3Bucket}
+          AWS_REGION=${AWS::Region}
+          AWS_ACCESS_KEY_ID=
+          AWS_SECRET_ACCESS_KEY=
+          AWS_SESSION_TOKEN=
+          
+          EOF
+
+          # 6. Atur Permissions
+          chown -R ubuntu:www-data /var/www/html
+          chmod -R 775 /var/www/html
+          
+          # 7. Restart Apache
+          systemctl restart apache2
+
+Outputs:
+  WebURL:
+    Description: Alamat Website Aplikasi
+    Value: !Sub "http://${MyEC2Instance.PublicIp}"
+  RDSEndpoint:
+    Description: Host Database RDS
+    Value: !GetAtt MyDatabase.Endpoint.Address
