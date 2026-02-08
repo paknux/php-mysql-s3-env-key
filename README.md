@@ -1,4 +1,4 @@
-# Aplikasi Data Karyawan CRUD PHP-MySQL-S3 Dengan Environmet Variable dan S3 Key 
+# EC2 (Apache + PHP), RDS (MySQL) dan S3 untuk Aplikasi Data Karyawan dengan Environmet Variable dan S3 Key 
 ---
 ## Menggunakan **EC2 Ubuntu 24.04** di lingkungan **AWS Academy**.
 ---
