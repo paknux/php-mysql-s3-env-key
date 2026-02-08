@@ -122,7 +122,7 @@ AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_SESSION_TOKEN=
 ````
-AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN dapat dilihat dari AWS Details di akun AWS Academy anda, di halaman untuk Start/Stop Lab.
+AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN dapat dilihat dari AWS Details di akun AWS Academy anda, di halaman untuk Start Lab / End Lab.
 
 ![AWS Details](img/awsdetails.png)
 
