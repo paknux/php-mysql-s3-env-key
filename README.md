@@ -135,6 +135,9 @@ AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN dapat dilihat dari A
 http://ip_public
 ````
 
+![Hasil Pengujian](img/hasilpengujian.png)
+
+
 ##### Pengetesan Environment Variable
 ````
 http://ip_public/testenv.php
