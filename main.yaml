@@ -1,6 +1,42 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Full Infrastructure dengan Otomatisasi Git Clone untuk Project Karyawan.
 
+# --- TARUH DI SINI ---
+Parameters:
+  GitHubRepoURL:
+    Type: String
+    Default: "https://github.com/paknux/php-mysql-s3-env-key"
+    Description: "URL Repository GitHub aplikasi"
+  TempRepoPath:
+    Type: String
+    Default: "/tmp/repo"
+    Description: "Lokasi folder sementara untuk clone"
+  
+  env_DB_NAME:
+    Type: String
+    Default: "db_karyawan"
+
+  env_DB_USER:
+    Type: String
+    Default: "admin"
+
+  env_DB_PASS:
+    Type: String
+    Default: "P4ssw0rd"
+
+  env_AWS_ACCESS_KEY_ID:
+    Type: String
+    Default: ""
+
+  env_AWS_SECRET_ACCESS_KEY:
+    Type: String
+    Default: ""
+
+  env_AWS_SESSION_TOKEN:
+    Type: String
+    Default: ""
+
+
 Resources:
   # 1. SECURITY GROUP
   MyAppSecurityGroup:
@@ -55,7 +91,7 @@ Resources:
       EngineVersion: "8.0"
       DBInstanceClass: db.t3.micro
       AllocatedStorage: "20"
-      DBName: "db_karyawan"
+      DBName: ${env_DB_NAME}
       MasterUsername: "admin"
       MasterUserPassword: "P4ssw0rd"
       PubliclyAccessible: true
@@ -90,7 +126,7 @@ Resources:
 
           # 3. Bersihkan direktori web dan Clone Repo
           rm -rf /var/www/html/*
-          git clone https://github.com/paknux/php-mysql-s3-env-key /tmp/repo
+          git clone ${GitHubRepoURL} ${TempRepoPath}
           cp -r /tmp/repo/* /var/www/html/
           rm -rf /tmp/repo
 
@@ -102,14 +138,14 @@ Resources:
           # 5. Buat file .env otomatis dengan endpoint RDS & S3 terbaru
           cat <<EOF > /var/www/html/.env
           DB_HOST=${MyDatabase.Endpoint.Address}
-          DB_NAME=db_karyawan
-          DB_USER=admin
-          DB_PASS=P4ssw0rd
+          DB_NAME= ${env_DB_NAME}
+          DB_USER= ${env_DB_USER}
+          DB_PASS=${env_DB_PASS}
           AWS_BUCKET=${MyS3Bucket}
           AWS_REGION=${AWS::Region}
-          AWS_ACCESS_KEY_ID=
-          AWS_SECRET_ACCESS_KEY=
-          AWS_SESSION_TOKEN=
+          AWS_ACCESS_KEY_ID=${env_AWS_ACCESS_KEY_ID}
+          AWS_SECRET_ACCESS_KEY=${env_AWS_SECRET_ACCESS_KEY}
+          AWS_SESSION_TOKEN=${env_AWS_SESSION_TOKEN}
           
           EOF
 
