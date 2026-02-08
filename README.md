@@ -11,7 +11,7 @@
 
 Buat dulu SG yang sesuai, ijinkan inbound rule port 22, 80 (web server), dan 3306 (MySQL/Aurora) dari anywhere-IPv4 (0.0.0.0/0).
 
-<hr>
+---
 
 ### A. Buat RDS
 
@@ -33,7 +33,7 @@ Confirm master password : (P4ssw0rd) boleh diganti
 13. Klik create database
 14. Tunggu sampai mendapatkan End Point
 
-<hr>
+---
 
 ### B. Membuat Instance EC2
 
@@ -47,7 +47,7 @@ Confirm master password : (P4ssw0rd) boleh diganti
   
 3. Hubungkan ke instance via SSH.
 
-<hr>
+---
 
 ### C. Membuat dan Konfigurasi S3 Bucket
 S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa, 
