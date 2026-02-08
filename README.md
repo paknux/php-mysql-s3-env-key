@@ -11,6 +11,7 @@
 
 Buat dulu SG yang sesuai, ijinkan inbound rule port 22, 80 (web server), dan 3306 (MySQL/Aurora) dari anywhere-IPv4 (0.0.0.0/0).
 
+--
 
 ### A. Buat RDS
 
@@ -32,6 +33,7 @@ Confirm master password : (P4ssw0rd) boleh diganti
 13. Klik create database
 14. Tunggu sampai mendapatkan End Point
 
+--
 
 ### B. Membuat Instance EC2
 
@@ -44,6 +46,8 @@ Confirm master password : (P4ssw0rd) boleh diganti
    - **Security Group:** Izinkan **HTTP (80)** dan **SSH (22)**.
   
 3. Hubungkan ke instance via SSH.
+
+--
 
 ### C. Membuat dan Konfigurasi S3 Bucket
 S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa, 
@@ -61,7 +65,6 @@ S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa,
    - jangan lupa CENTANG acknowledge that the current settings
 3. klik Create bucket
 
----
 ---
 
 ## II. Deploy App ke EC2
