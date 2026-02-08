@@ -11,6 +11,7 @@
 
 Buat dulu SG yang sesuai, ijinkan inbound rule port 22, 80 (web server), dan 3306 (MySQL/Aurora) dari anywhere-IPv4 (0.0.0.0/0).
 
+
 ### A. Buat RDS
 
 1. Buka Aurora and RDS
@@ -60,6 +61,7 @@ S3 Bucket dapat dibuat dengan Web GUI Management Console seperti biasa,
    - jangan lupa CENTANG acknowledge that the current settings
 3. klik Create bucket
 
+---
 
 ## II. Deploy App ke EC2
 
