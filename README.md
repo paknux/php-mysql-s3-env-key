@@ -1,6 +1,6 @@
-# EC2 (Apache + PHP), RDS (MySQL) dan S3 untuk Aplikasi Data Karyawan dengan Environmet Variable dan S3 Key 
+## EC2 (Apache + PHP), RDS (MySQL), dan S3 untuk Aplikasi Data Karyawan dengan Environmet Variable dan S3 Key 
 ---
-## Menggunakan **EC2 Ubuntu 24.04** di lingkungan **AWS Academy**.
+### Menggunakan **EC2 Ubuntu 24.04** di lingkungan **AWS Academy**.
 ---
 
 ### Project ini mendokumentasikan langkah-langkah mendeploy aplikasi PHP yang menyimpan file (asset) di **AWS S3** menggunakan **EC2 Ubuntu 24.04** di lingkungan **AWS Academy**.
