@@ -12,6 +12,19 @@ Parameters:
     Default: "/tmp/repo"
     Description: "Lokasi folder sementara untuk clone"
   
+  BucketName:
+    Type: String
+    Default: "nug-php-mysql-s3-env-key"
+    Description: "Nama S3 Bucket untuk aplikasi"
+
+  EC2Name:
+    Type: String
+    Default: "ubuntu-php-mysql-s3"
+    Description: "Nama Instance EC2"
+  
+  
+
+  
   env_DB_NAME:
     Type: String
     Default: "db_karyawan"
@@ -69,7 +82,7 @@ Resources:
   MyS3Bucket:
       Type: 'AWS::S3::Bucket'
       Properties:
-        BucketName: "nug-php-mysql-s3-env-key" 
+        BucketName: ${BucketName}
         # Hapus baris AccessControl: PublicReadWrite jika masih gagal
         OwnershipControls:
           Rules:
@@ -92,8 +105,8 @@ Resources:
       DBInstanceClass: db.t3.micro
       AllocatedStorage: "20"
       DBName: ${env_DB_NAME}
-      MasterUsername: "admin"
-      MasterUserPassword: "P4ssw0rd"
+      MasterUsername: ${env_DB_USER}
+      MasterUserPassword: ${env_DB_PASS}
       PubliclyAccessible: true
       VPCSecurityGroups:
         - !GetAtt MyAppSecurityGroup.GroupId
@@ -112,7 +125,7 @@ Resources:
         - !Ref MyAppSecurityGroup
       Tags:
         - Key: Name
-          Value: php-mysql-s3
+          Value: ${EC2Name}
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
