@@ -36,7 +36,7 @@ Confirm master password : (P4ssw0rd) boleh diganti
 
 1. Login ke AWS Academy Learner Lab.
 2. Launch Instance dengan spesifikasi:
-   - **Nama:** `php-mysql-s3`
+   - **Nama:** `ubuntu-php-mysql-s3`
    - **AMI:** Ubuntu 24.04 LTS.
    - **Instance Type:** t2.micro (Free Tier).
    - **Key Pair:** Pilih atau buat baru.
