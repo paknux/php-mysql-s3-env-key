@@ -110,7 +110,6 @@ DB_NAME=db_karyawan
 DB_USER=admin
 DB_PASS=P4ssw0rd
 
-
 AWS_REGION=us-east-1
 AWS_BUCKET=nug-php-mysql-s3-env-key
 
@@ -118,6 +117,8 @@ AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_SESSION_TOKEN=
 ````
+AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN dapat dilihat dari AWS Details di akun AWS Academy anda, di menu Vocareum Start/Stop Lab.
+
 
 
 ## Pengujian
