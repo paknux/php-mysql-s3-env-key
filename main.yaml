@@ -110,7 +110,7 @@ Resources:
       - MyDatabase
       - MyS3Bucket
     Properties:
-      InstanceType: t2.nano
+      InstanceType: t3.micro
       KeyName: vockey 
       ImageId: ami-0e2c8caa4b6378d8c 
       SecurityGroupIds:
