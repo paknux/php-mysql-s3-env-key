@@ -3,7 +3,7 @@
 ### Menggunakan **EC2 Ubuntu 24.04** di lingkungan **AWS Academy**.
 ---
 
-### Project ini mendokumentasikan langkah-langkah mendeploy aplikasi PHP yang menyimpan file (asset) di **AWS S3** menggunakan **EC2 Ubuntu 24.04** di lingkungan **AWS Academy**.
+#### Project ini mendokumentasikan langkah-langkah mendeploy aplikasi PHP-MySQL yang menyimpan file (asset) di **AWS S3** menggunakan **EC2 Ubuntu 24.04** di lingkungan **AWS Academy**.
 ---
 
 
