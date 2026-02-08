@@ -38,7 +38,7 @@ Confirm master password : (P4ssw0rd) boleh diganti
 2. Launch Instance dengan spesifikasi:
    - **Nama:** `ubuntu-php-mysql-s3`
    - **AMI:** Ubuntu 24.04 LTS.
-   - **Instance Type:** t2.micro (Free Tier).
+   - **Instance Type:** t3.micro.
    - **Key Pair:** Pilih atau buat baru.
    - **Security Group:** Izinkan **HTTP (80)** dan **SSH (22)**.
   
