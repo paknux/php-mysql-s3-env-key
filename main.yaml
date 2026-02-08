@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Full Infrastructure dengan Otomatisasi Git Clone untuk Project Karyawan.
 
-# --- TARUH DI SINI ---
 Parameters:
   GitHubRepoURL:
     Type: String
@@ -21,34 +20,30 @@ Parameters:
     Type: String
     Default: "ubuntu-php-mysql-s3"
     Description: "Nama Instance EC2"
-  
-  
-
-  
-  env_DB_NAME:
+     
+  envDBNAME:
     Type: String
     Default: "db_karyawan"
 
-  env_DB_USER:
+  envDBUSER:
     Type: String
     Default: "admin"
 
-  env_DB_PASS:
+  envDBPASS:
     Type: String
     Default: "P4ssw0rd"
 
-  env_AWS_ACCESS_KEY_ID:
+  envAWSACCESSKEYID:
     Type: String
     Default: ""
 
-  env_AWS_SECRET_ACCESS_KEY:
+  envAWSSECRETACCESSKEY:
     Type: String
     Default: ""
 
-  env_AWS_SESSION_TOKEN:
+  envAWSSESSIONTOKEN:
     Type: String
     Default: ""
-
 
 Resources:
   # 1. SECURITY GROUP
@@ -82,8 +77,7 @@ Resources:
   MyS3Bucket:
       Type: 'AWS::S3::Bucket'
       Properties:
-        BucketName: ${BucketName}
-        # Hapus baris AccessControl: PublicReadWrite jika masih gagal
+        BucketName: !Ref BucketName
         OwnershipControls:
           Rules:
             - ObjectOwnership: BucketOwnerPreferred
@@ -92,8 +86,6 @@ Resources:
           BlockPublicPolicy: false
           IgnorePublicAcls: false
           RestrictPublicBuckets: false
-
-
 
   # 3. RDS MYSQL INSTANCE
   MyDatabase:
@@ -104,14 +96,14 @@ Resources:
       EngineVersion: "8.0"
       DBInstanceClass: db.t3.micro
       AllocatedStorage: "20"
-      DBName: ${env_DB_NAME}
-      MasterUsername: ${env_DB_USER}
-      MasterUserPassword: ${env_DB_PASS}
+      DBName: !Ref envDBNAME
+      MasterUsername: !Ref envDBUSER
+      MasterUserPassword: !Ref envDBPASS
       PubliclyAccessible: true
       VPCSecurityGroups:
         - !GetAtt MyAppSecurityGroup.GroupId
 
-  # 4. INSTANCE EC2 DENGAN GIT CLONE
+  # 4. INSTANCE EC2
   MyEC2Instance:
     Type: 'AWS::EC2::Instance'
     DependsOn: 
@@ -125,7 +117,7 @@ Resources:
         - !Ref MyAppSecurityGroup
       Tags:
         - Key: Name
-          Value: ${EC2Name}
+          Value: !Ref EC2Name
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
@@ -140,26 +132,24 @@ Resources:
           # 3. Bersihkan direktori web dan Clone Repo
           rm -rf /var/www/html/*
           git clone ${GitHubRepoURL} ${TempRepoPath}
-          cp -r /tmp/repo/* /var/www/html/
-          rm -rf /tmp/repo
+          cp -r ${TempRepoPath}/* /var/www/html/
+          rm -rf ${TempRepoPath}
 
-          # 4. Jalankan Composer Install di dalam /var/www/html
+          # 4. Jalankan Composer Install
           cd /var/www/html
-          # sudo -u ubuntu composer install
           composer require aws/aws-sdk-php vlucas/phpdotenv
 
-          # 5. Buat file .env otomatis dengan endpoint RDS & S3 terbaru
+          # 5. Buat file .env otomatis (Tanpa spasi setelah =)
           cat <<EOF > /var/www/html/.env
           DB_HOST=${MyDatabase.Endpoint.Address}
-          DB_NAME= ${env_DB_NAME}
-          DB_USER= ${env_DB_USER}
-          DB_PASS=${env_DB_PASS}
+          DB_NAME=${envDBNAME}
+          DB_USER=${envDBUSER}
+          DB_PASS=${envDBPASS}
           AWS_BUCKET=${MyS3Bucket}
           AWS_REGION=${AWS::Region}
-          AWS_ACCESS_KEY_ID=${env_AWS_ACCESS_KEY_ID}
-          AWS_SECRET_ACCESS_KEY=${env_AWS_SECRET_ACCESS_KEY}
-          AWS_SESSION_TOKEN=${env_AWS_SESSION_TOKEN}
-          
+          AWS_ACCESS_KEY_ID=${envAWSACCESSKEYID}
+          AWS_SECRET_ACCESS_KEY=${envAWSSECRETACCESSKEY}
+          AWS_SESSION_TOKEN=${envAWSSESSIONTOKEN}
           EOF
 
           # 6. Atur Permissions
@@ -171,8 +161,8 @@ Resources:
 
 Outputs:
   WebURL:
-    Description: Alamat Website Aplikasi
+    Description: "Alamat Website Aplikasi"
     Value: !Sub "http://${MyEC2Instance.PublicIp}"
   RDSEndpoint:
-    Description: Host Database RDS
+    Description: "Host Database RDS"
     Value: !GetAtt MyDatabase.Endpoint.Address
