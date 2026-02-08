@@ -147,8 +147,8 @@ http://ip_public/testenv.php
 ---
 
 ## IV. Pengembangan
-1. Menggunakan User Data yang akan dieksekusi pada saat pertama kali pembuataninstance EC2
-2. Jika menjadi kebijakan perusahaam. mungkin perlu memasang Server MySQL (instance EC2) sendiri 
-3. Menggunakan Serverless (Elastic Beanstalk) untuk mendeploy PHP
+1. Menggunakan User Data yang akan dieksekusi pada saat pertama kali pembuatan instance EC2
+2. Jika menjadi kebijakan perusahaan (untuk penghematan dll),  mungkin perlu memasang Server MySQL (instance EC2) sendiri 
+3. Menggunakan solusi Serverless (Elastic Beanstalk) untuk mendeploy PHP
 4. Menggunakan Lambda dan API Gateway (migrasi ke bahasa pemrograman lain seperti Node.js)
 5. Menggunakan CloudFormation (yaml) untuk membuat stack automation
